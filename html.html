@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartShala</title>
+    <style>
+        @page{
+            margin:0;
+            size: A4 landscape;
+        }
+        @font-face {
+            font-family: dongle;
+            src: url(Dongle-Regular.ttf);
+        }
+
+        body{
+
+            font-family: 'dongle';
+            background: #FFE2F4;
+            background-image: url("back1.svg");
+            background-repeat: no-repeat;
+            background-size:100%;
+        }
+        #Layer{
+            font-size:60px;
+            font-weight:bold;
+            color:#610E59;
+            text-align:center;
+        }
+        #name{
+            margin-top: 15.8%;
+        }
+        #designation{
+            margin-top:-1%;
+        }
+        #date{
+            position:relative;
+            color:#3D1061;
+            opacity: 30%;
+            font-weight:bold;
+            font-size:40px;
+        }
+        #id{
+            position:relative;
+            margin-top: 5%;
+            margin-left: 11%;
+        }
+        #dd {
+            position:relative;
+            margin-top:-8.8%;
+            margin-left:76%;
+        }
+        #mm{
+            position:relative;
+            margin-top:-8.8%;
+            margin-left:82%;
+        }
+        #yyyy{
+            position:relative;
+            margin-top:-8.8%;
+            margin-left:88%;
+        }
+    </style>
+</head>
+<body>
+    <div id="date">
+        <p id="id"></p>
+        <p id="dd">22</p>
+        <p id="mm">06</p>
+        <p id="yyyy">2000</p>
+    </div>
+    <div id="Layer">
+        <p id="name">Imon Kalyan Roy</p>
+        <p id="designation">Team Lead</p>
+    </div>
+    <script>
+        var name = 'Niraj Chopra';
+        var designation = 'Team Manager';
+        document.addEventListener('DOMContentLoaded', function(event) {
+            SetPrint();
+        })
+        function SetPrint(){
+            const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+
+            var today = new Date();
+
+            document.getElementById("yyyy").innerHTML = today.getFullYear();
+            document.getElementById("id").innerHTML = genRanHex(8).toUpperCase();
+            document.getElementById("dd").innerHTML = String(today.getDate()).padStart(2, '0');
+            document.getElementById("mm").innerHTML = String(today.getMonth() + 1).padStart(2, '0');
+            name = prompt('Enter Your Name:',name);
+            document.getElementById("name").innerHTML = name
+            designation = prompt('Enter Your Designation:',designation);
+            document.getElementById("designation").innerHTML = designation;
+            if(confirm('Print?')){
+                window.print();
+            } else {
+                alert('Enter Values Again!');
+                SetPrint();
+            }
+        }
+        
+    </script>
+</body>
+</html>
